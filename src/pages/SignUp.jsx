@@ -10,6 +10,7 @@ const Container = styled.main`
   flex-direction: column;
   gap: 20px;
   margin: 0 auto;
+  margin-top: 100px;
 `;
 
 const Section = styled.section`

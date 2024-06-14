@@ -37,8 +37,24 @@ export const getUserInfo = async () => {
       });
       return response.data;
     } catch (error) {
-      alert(error?.response?.data?.message);
-      console.error(error?.response?.data?.message);
+      alert('accessToken이 만료되었습니다.');
+      localStorage.clear();
     }
+  }
+};
+
+export const updateProfile = async (formData) => {
+  console.log(formData);
+  const accessToken = localStorage.getItem('accessToken');
+  if (accessToken) {
+    try {
+      const response = await axios.patch('https://moneyfulpublicpolicy.co.kr/profile', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      return response.data;
+    } catch (error) {}
   }
 };
